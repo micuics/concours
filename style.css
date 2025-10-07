@@ -1,0 +1,253 @@
+/* Import de la police */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* Variables de couleur pour un thème festif */
+:root {
+    --bg-gradient-start: #1c1340;
+    --bg-gradient-end: #3b2a75;
+    --text-primary: #ffffff;
+    --text-secondary: #d1c4e9;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --gold: #ffd700;
+    --silver: #c0c0c0;
+    --bronze: #cd7f32;
+    --cta-color: #ff4081; /* Rose pour le bouton */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+    color: var(--text-primary);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Style pour le logo */
+.logo {
+    max-width: 120px;
+    height: auto;
+    margin-bottom: 0px; /* Écart réduit */
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.7)); /* Surbrillance blanche */
+}
+
+header h1 {
+    font-size: 2.8em;
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Conteneur pour aligner le compteur et le bouton */
+.header-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Pour les petits écrans */
+}
+
+/* Taille du texte réduite */
+#remaining-count {
+    font-size: 1.1em; /* Plus petit */
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 10px 20px;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+}
+
+#remaining-count span {
+    font-weight: 700;
+    font-size: 1.2em;
+    color: var(--gold);
+}
+
+/* Style pour le bouton "Commander" */
+.cta-button {
+    background-color: var(--cta-color);
+    color: var(--text-primary);
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(255, 64, 129, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 64, 129, 0.5);
+}
+
+/* --- DESIGN PODIUM --- */
+.podium-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+    margin: 60px 0 5px 0; /* Marge en bas réduite pour le sous-titre */
+    min-height: 300px;
+}
+
+/* NOUVEAU : Style pour le sous-titre du podium */
+.podium-subtitle {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+    opacity: 0.8;
+    margin-top: 0;
+    font-style: italic;
+}
+
+.podium-place {
+    width: 220px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 20px 10px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: riseUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* Nécessaire pour positionner le numéro */
+}
+
+.podium-place:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+
+/* Style pour le numéro de position sur le podium */
+.podium-rank {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-weight: 700;
+    font-size: 1.8em;
+    color: var(--text-secondary);
+    opacity: 0.5;
+}
+
+.podium-place h3 {
+    margin: 10px 0 5px 0;
+    font-size: 1.3em;
+    font-weight: 600;
+    word-break: break-word;
+}
+
+.podium-place .score {
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
+/* Taille des images */
+.podium-place img {
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.gold img { width: 120px; height: 120px; } /* Légèrement plus grande */
+.silver img { width: 90px; height: 90px; }
+.bronze img { width: 105px; height: 105px; } /* Légèrement plus grande */
+
+
+/* Hauteur flexible et médailles */
+.gold {
+    min-height: 250px;
+    border-top: 5px solid var(--gold);
+}
+.gold .score { color: var(--gold); }
+
+.silver {
+    min-height: 200px;
+    order: -1;
+    border-top: 5px solid var(--silver);
+}
+.silver .score { color: var(--silver); }
+
+.bronze {
+    min-height: 160px;
+    border-top: 5px solid var(--bronze);
+}
+.bronze .score { color: var(--bronze); }
+
+
+/* --- LEADERBOARD LIST --- */
+.leaderboard {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+}
+
+#leaderboard-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+#leaderboard-list li {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 8px;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+#leaderboard-list li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+#leaderboard-list .rank {
+    font-weight: 700;
+    font-size: 1.2em;
+    width: 40px;
+    color: var(--text-secondary);
+}
+#leaderboard-list .name {
+    font-weight: 600;
+    flex-grow: 1;
+}
+#leaderboard-list .score {
+    font-weight: 700;
+    color: var(--gold);
+}
+
+/* --- ANIMATIONS --- */
+@keyframes riseUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
