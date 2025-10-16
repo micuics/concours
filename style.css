@@ -250,3 +250,12 @@ header h1 {
 @keyframes fadeIn {
     to { opacity: 1; }
 }
+
+header .header-info {
+    margin-bottom: 1.5rem; /* espace entre "Commander" et le texte explicatif */
+}
+
+header .podium-subtitle {
+    margin-top: 0; /* évite un double espace si déjà défini */
+}
+
