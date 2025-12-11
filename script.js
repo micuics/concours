@@ -5,6 +5,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const podiumContainer = document.getElementById('podium');
     const leaderboardList = document.getElementById('leaderboard-list');
 
+    // --- Références modifiables pour les lots du podium ---
+    // Modifiez ces valeurs ici (facilement remplaçables)
+    const podiumReferences = ['télé', 'référence2', 'référence3'];
+
+    // --- POPUP: affiché à chaque ouverture ---
+    const popupModal = document.getElementById('popupModal');
+    const popupClose = document.getElementById('popupClose');
+
+    function closePopup() {
+        if (!popupModal) return;
+        popupModal.classList.add('hidden');
+        popupModal.setAttribute('aria-hidden', 'true');
+    }
+
+    if (popupClose && popupModal) {
+        // focus pour accessibilité
+        popupClose.focus();
+
+        popupClose.addEventListener('click', () => {
+            closePopup();
+        });
+
+        // Fermeture en cliquant sur l'arrière-plan
+        popupModal.addEventListener('click', (e) => {
+            if (e.target === popupModal) closePopup();
+        });
+
+        // Fermeture avec la touche Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !popupModal.classList.contains('hidden')) {
+                closePopup();
+            }
+        });
+    }
+
     // Animation de comptage pour le score
     function animateCountUp(element, target) {
         let current = 0;
@@ -86,7 +121,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Ajout du numéro de position (div.podium-rank)
             placeDiv.innerHTML = `
                 <div class="podium-rank">${index + 1}</div>
-                <img src="${medalInfo[index].image}" alt="Lot pour la ${index + 1}ère place">
+                <div class="img-wrapper">
+                    <img src="${medalInfo[index].image}" alt="Lot pour la ${index + 1}ère place">
+                    <button class="info-icon" aria-label="Informations sur le produit" aria-expanded="false">i</button>
+                    <div class="info-tooltip">${podiumReferences[index] || ('référence' + (index + 1))}</div>
+                </div>
                 <h3>${participant.name}</h3>
                 <div class="score">${participant.score}</div>
             `;
@@ -109,6 +148,52 @@ document.addEventListener('DOMContentLoaded', () => {
             leaderboardList.appendChild(listItem);
         });
     }
+
+    // Gestion des tooltips d'information (clic pour ouvrir/fermer, fermeture en cliquant ailleurs ou Échap)
+    document.addEventListener('click', (e) => {
+        const target = e.target;
+
+        // Si on clique sur une info-icon
+        if (target.classList && target.classList.contains('info-icon')) {
+            const tooltip = target.nextElementSibling;
+            if (!tooltip) return;
+            const isShown = tooltip.classList.contains('show');
+            // Fermer toutes les tooltips ouvertes
+            document.querySelectorAll('.info-tooltip.show').forEach(t => {
+                t.classList.remove('show');
+                const btn = t.previousElementSibling;
+                if (btn && btn.classList) btn.setAttribute('aria-expanded', 'false');
+            });
+            // Basculer l'état pour le tooltip cliqué
+            if (!isShown) {
+                tooltip.classList.add('show');
+                target.setAttribute('aria-expanded', 'true');
+            } else {
+                tooltip.classList.remove('show');
+                target.setAttribute('aria-expanded', 'false');
+            }
+            return;
+        }
+
+        // Si on clique en dehors d'une info-icon/tooltip, fermer toutes les tooltips
+        if (!target.classList || (!target.classList.contains('info-tooltip') && !target.classList.contains('info-icon'))) {
+            document.querySelectorAll('.info-tooltip.show').forEach(t => {
+                t.classList.remove('show');
+                const btn = t.previousElementSibling;
+                if (btn && btn.classList) btn.setAttribute('aria-expanded', 'false');
+            });
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.info-tooltip.show').forEach(t => {
+                t.classList.remove('show');
+                const btn = t.previousElementSibling;
+                if (btn && btn.classList) btn.setAttribute('aria-expanded', 'false');
+            });
+        }
+    });
 
     fetchDataAndBuildLeaderboard();
 });

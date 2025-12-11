@@ -1,23 +1,41 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🏆 Classement Vente Micuics</title>
+    <title>🎄 Classement Concours Noël 🎄</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
+    <!-- Flocons de neige animés -->
+    <div class="snowflakes">
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+    </div>
 
     <div class="container">
         <header>
-            <img src="l.png" alt="Logo de l'association" class="logo">
-            <h1>🎉 Concours Micuics 🎉</h1>
+            <div class="header-top">
+                <img src="l.png" alt="Logo de l'association" class="logo">
+            </div>
+            <h1>✨ Concours Micuics ✨</h1>
+            <p class="subtitle-festive">Édition Spéciale Noël</p>
             <div class="header-info">
                 <div id="remaining-count">
-                    🏁 Concours fini, résultats finaux.
+                    Nombre de micuics restants : ???
                 </div>
             </div>
         </header>
@@ -25,17 +43,30 @@
         <main>
             <section id="podium" class="podium-container">
             </section>
-            
-            <p class="podium-subtitle">podium final</p>
+
+            <p class="podium-subtitle">🏆 Podium Final 🏆</p>
 
             <section class="leaderboard">
-                <h2>Suite du Classement</h2>
+                <h2>🎅 Suite du Classement 🎅</h2>
                 <ol id="leaderboard-list">
                 </ol>
             </section>
         </main>
+
+        <footer class="footer">
+            <p>Joyeuses Fêtes! 🎄 ❄️ 🎁</p>
+        </footer>
+    </div>
+
+    <!-- Pop-up modal affiché à chaque ouverture -->
+    <div id="popupModal" class="popup-modal" role="dialog" aria-modal="true" aria-hidden="false">
+        <div class="popup-content">
+            <button id="popupClose" class="popup-close" aria-label="Fermer la fenêtre">&times;</button>
+            <img src="p.png" alt="Annonce" class="popup-image">
+        </div>
     </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>
