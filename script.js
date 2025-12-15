@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Références modifiables pour les lots du podium ---
     // Modifiez ces valeurs ici (facilement remplaçables)
-    const podiumReferences = ['télé', 'référence2', 'référence3'];
+    const podiumReferences = ['Télé 50 pouces', 'Vidéo Projecteur PHI-NEOPIX 100 PHILIPS', 'Appareil à raclette HRG8P1200-25 CARREFOUR HOME'];
 
     // --- POPUP: affiché à chaque ouverture ---
     const popupModal = document.getElementById('popupModal');
@@ -196,4 +196,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     fetchDataAndBuildLeaderboard();
+
 });
