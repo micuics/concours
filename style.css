@@ -133,6 +133,28 @@ body {
     box-shadow: 0 0 20px rgba(232, 213, 183, 0.4);
 }
 
+/* Style Warning */
+.warning {
+    background: linear-gradient(135deg, rgba(255, 100, 100, 0.15), rgba(255, 50, 50, 0.15));
+    border: 2px solid #ff6464;
+    border-radius: 12px;
+    padding: 20px;
+    color: #ff9999;
+    font-size: 1.3em;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(255, 100, 100, 0.6);
+    animation: warningPulse 2s ease-in-out infinite;
+}
+
+@keyframes warningPulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(255, 100, 100, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(255, 100, 100, 0.8);
+    }
+}
+
 /* Flocons de neige animés */
 .snowflakes {
     position: fixed;
